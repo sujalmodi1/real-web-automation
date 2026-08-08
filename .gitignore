@@ -1,0 +1,19 @@
+# Maven
+target/
+
+# Generated test artifacts
+reports/
+screenshots/
+
+# IDE
+.vscode/
+.idea/
+
+# Java
+*.class
+
+# OS
+.DS_Store
+Thumbs.db
+
+
