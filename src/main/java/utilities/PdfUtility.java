@@ -5,7 +5,9 @@ import java.io.File;
 public class PdfUtility {
     public static boolean isPdfDownloaded() {
         String downloadPath = 
-            System.getProperty("user.home") + "\\Downloads";
+            System.getProperty("user.dir") 
+            + File.separator + "target"
+            + File.separator + "downloads";
 
         File folder = new File(downloadPath);
 
@@ -28,7 +30,7 @@ public class PdfUtility {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
     
