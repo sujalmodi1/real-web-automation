@@ -21,7 +21,7 @@ public class CartPage {
     }
 
     public boolean isCartPageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle)).getText().equals("Your Cart");
+        return wait.until(ExpectedConditions.textToBePresentInElementLocated(pageTitle, "Your Cart"));
     }
 
     public void clickCheckoutButton() {
@@ -66,7 +66,9 @@ public class CartPage {
             By productLocator = By.xpath("//div[@class='inventory_item_name' and text()='"
                 + productName + "']");
 
-            return !driver.findElements(productLocator).isEmpty();
+            return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(productLocator)
+            ).isDisplayed();
     }
 
     public void clickContinueShoppingButton() {
