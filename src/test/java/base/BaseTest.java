@@ -16,13 +16,47 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
+        // Create a download directory inside the Jenkins/project workspace
+        String downloadPath = System.getProperty("user.dir")
+                + File.separator + "target"
+                + File.separator + "downloads";
+
+        try {
+            Files.createDirectories(Paths.get(downloadPath));
+
+            // Delete old PDF files before each test
+            Path downloadDirectory = Paths.get(downloadPath);
+
+            Files.list(downloadDirectory)
+                    .filter(path -> path.getFileName()
+                            .toString()
+                            .startsWith("swag-labs-order-"))
+                    .filter(path -> path.getFileName()
+                            .toString()
+                            .endsWith(".pdf"))
+                    .forEach(path -> {
+                        try {
+                            Files.deleteIfExists(path);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+        } catch (Exception e) {
+            throw new RuntimeException(
+                    "Could not prepare download directory", e);
+        }
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.setExperimentalOption(
             "prefs",
             Map.of(
                 "credentials_enable_service", false,
-                "profile.password_manager_leak_detection", false));
+                "profile.password_manager_leak_detection", false,
+                "download.default_directory", downloadPath,
+                "download.prompt_for_download", false,
+                "download.directory_upgrade", true,
+                "plugins.always_open_pdf_externally", true));
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
