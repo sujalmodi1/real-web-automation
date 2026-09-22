@@ -61,8 +61,9 @@ public class ProductsPage {
 
     public void addProductToCart(String productId) {
         By addButton = By.id("add-to-cart-" + productId);
+        By removeButton = By.id("remove-" + productId);
         wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(cartBadge));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(removeButton));
     }
 
     public void removeProductFromCart(String productId) {
