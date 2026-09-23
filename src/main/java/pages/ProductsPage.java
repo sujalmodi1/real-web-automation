@@ -28,7 +28,7 @@ public class ProductsPage {
     }
 
     public boolean isProductsPageDisplayed() {
-        return wait.until(ExpectedConditions.textToBeDisplayedInElementLocated(pageTitle, "Products"));
+        return wait.until(ExpectedConditions.textToBePresentInElementLocated(pageTitle, "Products"));
     }
 
     public void sortBy(String value) {
