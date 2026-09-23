@@ -91,7 +91,7 @@ public class CartTest extends BaseTest {
 	    //Act
 	    cartPage.removeProductFromCart("Sauce Labs Backpack");
 	    //Assert (post-condition)
-	    Assert.assertFalse(cartPage.isProductPresentInCart(
+	    Assert.assertTrue(cartPage.isProductRemovedFromCart(
             "Sauce Labs Backpack"), 
             "The product should no longer be present in the cart.");
     }
