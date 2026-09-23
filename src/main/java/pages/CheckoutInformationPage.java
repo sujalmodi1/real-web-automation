@@ -24,7 +24,7 @@ public class CheckoutInformationPage {
     }
     
     public boolean isCheckoutInformationPageDisplayed() {
-            return wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle, "Checkout: Your Information"));
+            return wait.until(ExpectedConditions.textToBePresentInElementLocated(pageTitle, "Checkout: Your Information"));
     }
 
     public void enterFirstName(String firstName) {
