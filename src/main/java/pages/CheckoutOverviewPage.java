@@ -21,7 +21,7 @@ public class CheckoutOverviewPage {
     }
 
     public boolean isCheckoutOverviewPageDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle, "Checkout: Overview"));
+        return wait.until(ExpectedConditions.textToBePresentInElementLocated(pageTitle, "Checkout: Overview"));
     }
 
     public void clickFinishButton() {
