@@ -71,6 +71,14 @@ public class CartPage {
             ).isDisplayed();
     }
 
+    public boolean isProductRemovedFromCart(String productName) {
+            By productLocator = By.xpath("//div[@class='inventory_item_name' and text()='"
+                + productName + "']");
+
+            return wait.until(
+                ExpectedConditions.invisibilityOfElementLocated(productLocator));
+    }
+
     public void clickContinueShoppingButton() {
         wait.until(ExpectedConditions.elementToBeClickable(continueShoppingButton)).click();
     }
