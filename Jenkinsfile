@@ -19,11 +19,11 @@ pipeline {
                 bat 'mvn clean test'
             }
         }
+    }
 
-        stage {
-            always {
-                junit 'target/surefire-reports/*.xml'
-            }
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
         }
     }
 }
